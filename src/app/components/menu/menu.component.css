@@ -1,0 +1,25 @@
+.navbar-nav {
+  float: left;
+}
+
+.icon-con-borde {
+  border: rgba(255, 255, 255, 0.5) solid 1px;
+  border-radius: 5px;
+  padding: 2px;
+  position: relative;
+  top: 5px;
+  left: 110%;
+  height: 32px;
+}
+
+@media only screen and (max-width: 980px) {
+  .form-inline {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 980px) {
+  .iconos-collapse {
+    display: none;
+  }
+}

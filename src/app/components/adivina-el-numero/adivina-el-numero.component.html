@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">{{ nuevoJuego.nombre }}</h1>
+    <div *ngIf="nuevoJuego.numeroSecreto == 0">
+      <label for="input-numero-ingresado">Generá un número: </label>
+      <p>
+        <button
+          (click)="generarNumeroUsr()"
+          class="btn btn-primary btn-lg"
+          type="button"
+          id="button-nuevo"
+        >
+          Nuevo número secreto
+        </button>
+      </p>
+    </div>
+    <div *ngIf="nuevoJuego.numeroSecreto != 0">
+      <label for="input-numero-ingresado">Ingrese un número: </label>
+      <div class="input-group mb-3">
+        <input
+          id="input-numero-ingresado"
+          [(ngModel)]="nuevoJuego.numeroIngresado"
+          type="number"
+          class="form-control"
+          placeholder="Ingrese un número:"
+          aria-label="Ingrese un número:"
+          aria-describedby="button-addon2"
+        />
+        <div [hidden]="ocultarVerificar" class="input-group-append">
+          <button
+            class="btn btn-success"
+            type="button"
+            id="button-verificar"
+            (click)="verificarUsr()"
+          >
+            Verificar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="nuevoJuego.numeroSecreto != 0">
+      <h6 *ngIf="nuevoJuego.numeroIngresado != 0" class="display-5">
+        {{ nuevoJuego.numeroIngresado }}
+      </h6>
+      <hr class="my-4" />
+      <p>
+        <i class="fa fa-spinner fa-spin"> </i> Esperando que ingrese un número
+      </p>
+    </div>
+    <div [hidden]="!nuevoJuego.gano">
+      <h3>Adivinó el número</h3>
+      <button
+        class="btn btn-success"
+        type="button"
+        id="button-verificar"
+        (click)="guardar()"
+      >
+        Guardar partida
+      </button>
+    </div>
+    <h3 *ngIf="nuevoJuego.numeroSecreto != 0" [hidden]="nuevoJuego.gano">
+      Aún no ganó
+    </h3>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.imagen-jugada {
+  width: 200px;
+  height: 200px;
+  border: 0.3em #1eb1b382 solid;
+  border-radius: 10px;
+  margin: 0.5em 0 0.5em 0;
+}
+
+.col-6,
+.col-4 {
+  text-align: center;
+}
+
+.col-4 {
+  margin: 0;
+  padding: 0;
+}
+
+.imagen-elegir-jugada {
+  width: 200px;
+  height: 200px;
+  border: 0.3em #dc3545 solid;
+  border-radius: 10px;
+}
+
+.jumbotron {
+  padding: 1rem 2rem 1rem 2rem;
+}
+
+.label-jugadores {
+  text-align: justify;
+  font-size: 15px;
+}

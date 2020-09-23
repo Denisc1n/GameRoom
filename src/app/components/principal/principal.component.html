@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row title">
+    <h4 *ngIf="user">Bienvenid@ {{ user.nombre }}!</h4>
+  </div>
+  <div class="list-group">
+    <div
+      class="list-group-item list-group-item-action flex-column align-items-start active"
+    >
+      <div class="d-flex w-100 justify-content-center">
+        <h4 class="mb-1">Menu Principal</h4>
+      </div>
+    </div>
+    <a
+      routerLink="/Juegos"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+    >
+      <img
+        class="menu-image"
+        src="../../../assets/imagenes/saladejuegos_dlp.png"
+      />
+      <div class="d-flex justify-content-between">
+        <h5 class="mb-1 title" style="font-size: medium">Juegos</h5>
+      </div>
+      <p class="mb-1">
+        El método lúdico es un conjunto de estrategias diseñadas para crear un
+        ambiente de armonía en los estudiantes que están inmersos en el proceso
+        de aprendizaje. Este método busca que los alumnos se apropien de los
+        temas impartidos por los docentes utilizando el juego.
+      </p>
+    </a>
+    <a
+      routerLink="/Listado"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+    >
+      <div>
+        <img
+          class="menu-image"
+          src="../../../assets/imagenes/listado_dlp.png"
+        />
+      </div>
+      <div class="d-flex justify-content-between">
+        <h5 class="mb-1 title">Listados de resultados</h5>
+      </div>
+      <p class="mb-1">
+        Los listados de los resultados con ordenamiento y busqueda
+      </p>
+    </a>
+    <a
+      href="#"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+    >
+      <div>
+        <img
+          class="menu-image"
+          src="../../../assets/imagenes/configuracion_dlp.png"
+        />
+      </div>
+      <div class="d-flex justify-content-between">
+        <h5 class="mb-1 title">Configuraci&oacute;n</h5>
+      </div>
+      <p class="mb-1">
+        Ajustes de la aplicacion y los métodos de autentificación
+      </p>
+    </a>
+    <a
+      routerLink="/ListadoJugadores"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+    >
+      <div>
+        <img
+          class="menu-image"
+          src="../../../assets/imagenes/jugadores_dlp.png"
+        />
+      </div>
+      <div class="d-flex justify-content-between">
+        <h5 class="mb-1 title">Jugadores</h5>
+      </div>
+      <p class="mb-1">Listado de jugadores</p>
+    </a>
+  </div>
+</div>

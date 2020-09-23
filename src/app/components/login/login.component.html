@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row title">
+      <h3>Inicia sesión</h3>
+    </div>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="login()"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="email"><b>Email:</b></label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Ingrese su correo electrónico:"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password"><b>Contraseña:</b></label>
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Ingrese su contraseña:"
+          required
+        />
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="btn btn-primary"
+      >
+        Ingresar
+      </button>
+    </form>
+    <br />
+    <button class="btn btn-warning" [routerLink]="['/registro']">
+      Crear cuenta
+    </button>
+    <button class="btn btn-secondary" (click)="loginInvitado()">
+      Continuar como invitado <i class="fa fa-sign-in"></i>
+    </button>
+  </div>
+</div>

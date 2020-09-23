@@ -1,0 +1,25 @@
+<app-juego-union
+  [pairs]="animals"
+  (leftpartSelected)="onLeftpartSelected($event)"
+  (rightpartSelected)="onRightpartSelected($event)"
+  (leftpartUnselected)="onLeftpartUnselected()"
+  (rightpartUnselected)="onRightpartUnselected()"
+>
+  <ng-template #leftpart let-animalPair="contextPair">
+    <div
+      class="myAnimal left"
+      [class.selected]="leftpartSelectedId == animalPair.id"
+    >
+      {{ animalPair.leftpart }}
+    </div>
+  </ng-template>
+
+  <ng-template #rightpart let-animalPair="contextPair">
+    <div
+      class="myAnimal right"
+      [class.selected]="rightpartSelectedId == animalPair.id"
+    >
+      {{ animalPair.rightpart }}
+    </div>
+  </ng-template>
+</app-juego-union>

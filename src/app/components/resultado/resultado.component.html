@@ -1,0 +1,11 @@
+<div class="pad-3" *ngIf="mensaje != ''">
+  <div
+    class="card alert"
+    [ngClass]="{
+      'alert-success': this.valido,
+      'alert-danger': !this.valido
+    }"
+  >
+    {{ mensaje }}
+  </div>
+</div>

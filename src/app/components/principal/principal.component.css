@@ -1,0 +1,9 @@
+.title {
+  justify-content: center;
+}
+
+img {
+  float: left;
+  width: 13%;
+  margin-right: 2em;
+}

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">{{ nuevoJuego.nombre }}</h1>
+    <br />
+    <div class="en-juego">
+      <div class="container tablero">
+        <div class="row" *ngIf="!enJuego">
+          <p>Seleccione una palabra..</p>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <ul class="list-group">
+              <li
+                (click)="palabraSeleccionada(key)"
+                class="list-group-item flex-fill"
+                *ngFor="let key of keys()"
+              >
+                {{ key }}
+              </li>
+            </ul>
+          </div>
+          <div
+            class="col-sm-12 col-md-4"
+            *ngIf="nuevoJuego.palabraSeleccionada != ''"
+          >
+            <div class="row">
+              <h2>{{ nuevoJuego.palabraSeleccionada }}</h2>
+            </div>
+            <div class="row">
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                  <span><i class="fa fa-spinner fa-spin"></i></span>
+                </div>
+                <input
+                  id="input-ingresado"
+                  [(ngModel)]="nuevoJuego.palabraIngresada"
+                  type="text"
+                  class="form-control"
+                  placeholder="Ingrese un anagrama:"
+                  aria-label="Ingrese un anagrama:"
+                  aria-describedby="button-addon2"
+                />
+                <div [hidden]="ocultarVerificar" class="input-group-append">
+                  <button
+                    class="btn btn-success"
+                    type="button"
+                    id="button-verificar"
+                    (click)="verificarUsr()"
+                  >
+                    Verificar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+    <div *ngIf="save">
+      <h3>Acertaste!</h3>
+      <button
+        class="btn btn-success"
+        type="button"
+        id="button-verificar"
+        (click)="guardar()"
+      >
+        Guardar partida
+      </button>
+    </div>
+    <!-- <div class="row" *ngIf="!enJuego">
+        <p><button (click)="nuevo()" class="btn btn-primary btn-lg" type="button" id="button-nuevo">
+                Nuevo juego</button></p>
+    </div> -->
+  </div>
+</div>

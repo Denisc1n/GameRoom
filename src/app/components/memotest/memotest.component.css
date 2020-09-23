@@ -1,0 +1,10 @@
+img.img-card:hover {
+  position: relative;
+  top: -0.5rem;
+}
+
+img.img-card {
+  padding: 0.5rem;
+  height: 10rem;
+  width: auto;
+}

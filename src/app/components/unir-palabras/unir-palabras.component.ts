@@ -8,7 +8,6 @@ import { Pares } from './animals';
 })
 export class UnirPalabrasComponent implements OnInit {
   animals = Pares;
-
   leftpartSelectedId: number = -1;
   rightpartSelectedId: number = -1;
 

@@ -7,7 +7,7 @@
 >
   <ng-template #leftpart let-animalPair="contextPair">
     <div
-      class="myAnimal left"
+      class="element left"
       [class.selected]="leftpartSelectedId == animalPair.id"
     >
       {{ animalPair.leftpart }}
@@ -16,7 +16,7 @@
 
   <ng-template #rightpart let-animalPair="contextPair">
     <div
-      class="myAnimal right"
+      class="element right"
       [class.selected]="rightpartSelectedId == animalPair.id"
     >
       {{ animalPair.rightpart }}

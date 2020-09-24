@@ -1,4 +1,12 @@
 <div id="game">
+  <app-resultado
+    [mensaje]="successMessage"
+    valido="{ true; delay(2000).subscribe(() => {return false; });}"
+  ></app-resultado>
+  <button class="btn btn-success col-12" (click)="StartGame()">
+    Iniciar Juego
+  </button>
+  <br />
   <div class="container unsolved" *ngIf="unsolvedPairs.length > 0">
     <div class="pair_items left">
       <div

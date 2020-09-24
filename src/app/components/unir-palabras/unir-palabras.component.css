@@ -1,4 +1,4 @@
-.myAnimal {
+.element {
   width: 100px;
   height: 100px;
   color: white;
@@ -9,11 +9,11 @@
 }
 
 .left {
-  background-color: #68ad68;
+  background-color: green;
 }
 
 .right {
-  background-color: #a83295;
+  background-color: saddlebrown;
 }
 
 .selected {

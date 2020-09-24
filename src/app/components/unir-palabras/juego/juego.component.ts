@@ -35,6 +35,8 @@ export class JuegoComponent implements OnInit {
   public unsolvedPairs: ParPalabras[] = [];
 
   test: number;
+  successMessage: string;
+  triesAmount: number = 0;
 
   private assignmentStream = new Subject<{ pair: ParPalabras; side: string }>();
 
@@ -85,10 +87,21 @@ export class JuegoComponent implements OnInit {
     this.rightpartUnselected.emit();
 
     this.test = Math.random() * 10;
+    this.triesAmount += 1;
 
     if (this.unsolvedPairs.length == 0) {
       this.toastr.success('¡Ganaste!, ¡Resolviste todas las relaciones!');
+      this.successMessage =
+        'Juego terminado en ' + this.triesAmount + ' intento/s.';
     }
+  }
+
+  public StartGame(): void {
+    this.solvedPairs = [];
+    this.unsolvedPairs = [];
+    this.assignmentStream = new Subject<{ pair: ParPalabras; side: string }>();
+    this.triesAmount = 0;
+    this.ngOnInit();
   }
 
   private handleFailedAssignment(side1: string): void {
@@ -97,6 +110,7 @@ export class JuegoComponent implements OnInit {
     } else {
       this.rightpartUnselected.emit();
     }
+    this.triesAmount += 1;
   }
 
   private remove(array: ParPalabras[], pair: ParPalabras) {

@@ -68,7 +68,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
   }
 
   guardar() {
-    this.user.puntajes['agilidad'] += 1;
+    this.user.puntajes.agilidad += 1;
     this.dataService
       .updatePuntaje(this.user.uid, this.user.puntajes)
       .then(() => {
@@ -80,10 +80,15 @@ export class AgilidadAritmeticaComponent implements OnInit {
   }
 
   getCurrentUser() {
-    let user = this.authService.getCurrentUser();
-    this.dataService.getUserByUid(user).subscribe((res) => {
-      this.user = res;
+    this.authService.getCurrentUser().then((data) => {
+      data.docs.forEach((doc) => {
+        this.user = doc.data();
+      });
     });
+
+    // this.dataService.getUserByUid(user).subscribe((res) => {
+    //   this.user = res;
+    // });
   }
 
   ngOnInit() {

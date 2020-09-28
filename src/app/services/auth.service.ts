@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DataService } from './data.service';
+import { userInfo } from 'os';
 
 interface IPuntajes {
   agilidad: number;
@@ -22,9 +24,18 @@ export class AuthService {
     private db: AngularFirestore
   ) {}
 
-  getCurrentUser() {
-    let user = this.AFauth.currentUser;
-    return user;
+  private userData;
+  private aa;
+  async getCurrentUser() {
+    let currentUser;
+    currentUser = (await this.AFauth.currentUser).uid;
+    return this.db
+      .collection('usuarios')
+      .ref.where('uid', '==', currentUser)
+      .get();
+
+    //let user = this.AFauth.currentUser;
+    return;
   }
 
   login(email: string, password: string) {
@@ -36,6 +47,8 @@ export class AuthService {
         .catch((err) => {
           reject(err);
         });
+
+      //const user = this.getCurrentUser().then((user) => console.log(user));
     });
   }
 
@@ -49,7 +62,6 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.AFauth.createUserWithEmailAndPassword(email, password)
         .then((res) => {
-          console.log(res.user.uid);
           const uid = res.user.uid;
           this.db
             .collection('usuarios')
@@ -57,15 +69,18 @@ export class AuthService {
             .set({
               nombre: name,
               uid: uid,
-              perfil: 'usuario',
-              puntajes: [
-                { adivina: 0 },
-                { agilidad: 0 },
-                { anagrama: 0 },
-                { ppt: 0 },
-                { simon: 0 },
-                { tateti: 0 },
-              ],
+              perfil: 'Jugador',
+              isActive: true,
+              fechaDeRegistro: new Date(),
+              puntajes: {
+                adivina: 0,
+                agilidad: 0,
+                anagrama: 0,
+                ppt: 0,
+                tateti: 0,
+                unirPalabras: 0,
+                memotest: 0,
+              },
             });
           resolve(res);
         })

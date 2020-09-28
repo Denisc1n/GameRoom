@@ -17,19 +17,23 @@ export class DataService {
   }
 
   getUsers() {
-    return this.dbUsersRef.valueChanges();
+    return this.dbUsersRef.ref.where('isActive', '==', true);
   }
 
   getUserByUid(user: Promise<firebase.User>) {
-    console.log(user);
-    if (user.then.name !== '')
-      return this.dbUsersRef.doc(user.then.name).valueChanges();
+    // if (user.then.name !== '')
+    //   return this.dbUsersRef.doc(user.then.name).valueChanges();
   }
 
   updatePuntaje(userUid, puntos) {
-    console.info('puntajes updates', puntos);
     return this.dbUsersRef.doc(userUid).update({
       puntajes: puntos,
+    });
+  }
+
+  updateLastLoginDate(userUid) {
+    this.dbUsersRef.doc(userUid).update({
+      ultimaConexion: new Date(),
     });
   }
 }

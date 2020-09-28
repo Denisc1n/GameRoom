@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-memotest',
@@ -9,24 +12,30 @@ export class MemotestComponent implements OnInit {
   private images = [
     { id: 1, url: '../../assets/imagenes/peach.png' },
     { id: 2, url: '../../assets/imagenes/lemon.png' },
-    { id: 3, url: '../../assets/imagenes/apple.png' },
-    { id: 4, url: '../../assets/imagenes/tangerine.png' },
-    { id: 5, url: '../../assets/imagenes/cherries.png' },
-    { id: 6, url: '../../assets/imagenes/strawberries.png' },
-    { id: 7, url: '../../assets/imagenes/blueberries.png' },
-    { id: 8, url: '../../assets/imagenes/pineapple.png' },
+    // { id: 3, url: '../../assets/imagenes/apple.png' },
+    // { id: 4, url: '../../assets/imagenes/tangerine.png' },
+    // { id: 5, url: '../../assets/imagenes/cherries.png' },
+    // { id: 6, url: '../../assets/imagenes/strawberries.png' },
+    // { id: 7, url: '../../assets/imagenes/blueberries.png' },
+    // { id: 8, url: '../../assets/imagenes/pineapple.png' },
   ];
   public imagesInact = '../../assets/imagenes/card-back.png';
   public cards: Array<any>;
   private lastSelectId;
-  private requiredPositives = 8;
+  private requiredPositives = 2;
   private positiveCounter: number;
   public triesCounter: number;
   public successMessage: string;
-
-  constructor() {}
+  public save: boolean;
+  user: any;
+  constructor(
+    private authService: AuthService,
+    private dataService: DataService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
+    this.getCurrentUser();
     this.StartGame();
   }
 
@@ -84,6 +93,8 @@ export class MemotestComponent implements OnInit {
     if (this.requiredPositives === this.positiveCounter) {
       this.successMessage =
         'Juego terminado en ' + this.triesCounter + ' intento/s.';
+      this.save = true;
+      return;
     }
     this.triesCounter++;
   }
@@ -103,5 +114,43 @@ export class MemotestComponent implements OnInit {
     }
 
     return array;
+  }
+
+  getCurrentUser() {
+    let user = this.authService.getCurrentUser();
+    this.authService.getCurrentUser().then((data) => {
+      data.docs.forEach((doc) => {
+        this.user = doc.data();
+      });
+    });
+  }
+
+  guardar() {
+    if (this.user.puntajes['memotest'] > this.triesCounter) {
+      this.user.puntajes['memotest'] = this.triesCounter;
+      this.dataService
+        .updatePuntaje(this.user.uid, this.user.puntajes)
+        .then(() => {
+          this.toastr.success('Puntos guardados');
+        })
+        .catch((err) => {
+          this.toastr.error('Al guardar: ' + err.message, 'Error');
+        });
+    } else if (this.user.puntajes['memotest'] === 0) {
+      this.user.puntajes['memotest'] = this.triesCounter;
+      this.dataService
+        .updatePuntaje(this.user.uid, this.user.puntajes)
+        .then(() => {
+          this.toastr.success('Puntos guardados');
+        })
+        .catch((err) => {
+          this.toastr.error('Al guardar: ' + err.message, 'Error');
+        });
+    } else {
+      this.toastr.error(
+        'El puntaje obtenido es inferior al guardado previamente para este juego',
+        '¡Tenes mejor puntaje!'
+      );
+    }
   }
 }

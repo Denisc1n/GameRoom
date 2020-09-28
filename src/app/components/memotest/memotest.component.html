@@ -30,3 +30,14 @@
   [mensaje]="successMessage"
   valido="{ true; delay(2000).subscribe(() => {return false; });}"
 ></app-resultado>
+<div *ngIf="save">
+  <h3>Acertaste!</h3>
+  <button
+    class="btn btn-success"
+    type="button"
+    id="button-verificar"
+    (click)="guardar()"
+  >
+    Guardar partida
+  </button>
+</div>

@@ -35,7 +35,7 @@ export class RegistroComponent implements OnInit {
         this.router.navigate(['/Principal']);
       })
       .catch((err) => {
-        this.toastr.error('No se pudo crear el usuario', 'ERROR');
+        this.toastr.error('No se pudo crear el usuario', err.message);
       });
   }
 }

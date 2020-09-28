@@ -1,16 +1,21 @@
-<table class="table table-hover table-dark">
-  <thead>
-    <tr>
-      <th>Usuario</th>
-      <th>Fecha de Registro</th>
-      <th>Ultimo Acceso</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let jugador of listado">
-      <td>{{ jugador.usuario }}</td>
-      <td>{{ jugador.cuit }}</td>
-      <td>{{ jugador.sexo | sexo | uppercase }}</td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <table
+    class="table table-hover table-dark"
+    style="width: fit-content; margin-left: 30%"
+  >
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Perfil</th>
+        <th>Fecha de Registro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let jugador of listado">
+        <td>{{ jugador.data.nombre }}</td>
+        <td>{{ jugador.data.perfil }}</td>
+        <td>{{ jugador.data.fechaDeRegistro }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

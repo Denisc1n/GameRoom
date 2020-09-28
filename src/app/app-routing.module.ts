@@ -60,6 +60,7 @@ const routes: Routes = [
   { path: 'ListadoJugadores', component: ListadoDeJugadoresComponent },
   { path: '**', component: ErrorComponent },
   { path: 'error', component: ErrorComponent },
+  { path: 'Registro', component: RegistroComponent },
 ];
 
 @NgModule({

@@ -110,9 +110,10 @@ export class AdivinaElNumeroComponent implements OnInit {
   }
 
   getCurrentUser() {
-    let user = this.authService.getCurrentUser();
-    this.dataService.getUserByUid(user).subscribe((res) => {
-      this.user = res;
+    this.authService.getCurrentUser().then((data) => {
+      data.docs.forEach((doc) => {
+        this.user = doc.data();
+      });
     });
   }
 

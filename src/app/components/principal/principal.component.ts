@@ -21,8 +21,8 @@ export class PrincipalComponent implements OnInit {
 
   getCurrentUserName() {
     let user = this.authService.getCurrentUser();
-    this.dataService.getUserByUid(user).subscribe((res) => {
-      this.user = res;
-    });
+    // this.dataService.getUserByUid(user).subscribe((res) => {
+    // this.user = res;
+    // });
   }
 }

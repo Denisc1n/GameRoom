@@ -6,14 +6,29 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./listado-de-resultados.component.css'],
 })
 export class ListadoDeResultadosComponent implements OnInit {
-  usuarios: any;
+  usuarios: any[];
 
   constructor(private dataServ: DataService) {}
 
   ngOnInit() {
-    this.dataServ.getUsers().subscribe((res) => {
-      console.info('res', res);
-      this.usuarios = res;
-    });
+    this.getUpdatedUserList();
+  }
+
+  getUpdatedUserList() {
+    this.dataServ
+      .getUsers()
+      .get()
+      .then((users) => {
+        this.usuarios = [];
+        users.docs.map((element: any) => {
+          this.usuarios.push({
+            id: element.id,
+            data: {
+              nombre: element.data().nombre,
+              puntajes: element.data().puntajes,
+            },
+          });
+        });
+      });
   }
 }

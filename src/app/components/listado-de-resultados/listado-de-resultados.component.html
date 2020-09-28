@@ -8,23 +8,25 @@
         <thead>
           <tr>
             <th scope="col">Jugador</th>
-            <th scope="col">Adivina el número</th>
-            <th scope="col">Agilidad mental</th>
-            <th scope="col">Anagrama</th>
-            <th scope="col">Piedra, Papel o Tijera</th>
-            <th scope="col">Simón dice</th>
-            <th scope="col">TaTeTi</th>
+            <th scope="col">Adivina el número (Aciertos)</th>
+            <th scope="col">Agilidad mental(Aciertos)</th>
+            <th scope="col">Anagrama(Aciertos)</th>
+            <th scope="col">Piedra, Papel o Tijera(Victorias)</th>
+            <th scope="col">TaTeTi(Victorias)</th>
+            <th scope="col">Unir Palabras (Cantidad de Movimientos)</th>
+            <th scope="col">Menotest (Cantidad de Movimientos)</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of usuarios">
-            <th scope="row">{{ user.nombre }}</th>
-            <td>{{ user.puntajes.adivina }}</td>
-            <td>{{ user.puntajes.agilidad }}</td>
-            <td>{{ user.puntajes.anagrama }}</td>
-            <td>{{ user.puntajes.ppt }}</td>
-            <td>{{ user.puntajes.simon }}</td>
-            <td>{{ user.puntajes.tateti }}</td>
+            <th scope="row">{{ user.data.nombre }}</th>
+            <td>{{ user.data.puntajes.adivina }}</td>
+            <td>{{ user.data.puntajes.agilidad }}</td>
+            <td>{{ user.data.puntajes.anagrama }}</td>
+            <td>{{ user.data.puntajes.ppt }}</td>
+            <td>{{ user.data.puntajes.tateti }}</td>
+            <td>{{ user.data.puntajes.unirPalabras }}</td>
+            <td>{{ user.data.puntajes.memotest }}</td>
           </tr>
         </tbody>
       </table>

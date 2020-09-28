@@ -63,5 +63,15 @@
       >
       </ng-template>
     </div>
+    <div *ngIf="save">
+      <button
+        class="btn btn-success"
+        type="button"
+        id="button-verificar"
+        (click)="guardar()"
+      >
+        Guardar partida
+      </button>
+    </div>
   </div>
 </div>

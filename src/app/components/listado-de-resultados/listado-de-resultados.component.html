@@ -8,18 +8,35 @@
         <thead>
           <tr>
             <th scope="col">Jugador</th>
-            <th scope="col">Adivina el número (Aciertos)</th>
-            <th scope="col">Agilidad mental(Aciertos)</th>
-            <th scope="col">Anagrama(Aciertos)</th>
-            <th scope="col">Piedra, Papel o Tijera(Victorias)</th>
-            <th scope="col">TaTeTi(Victorias)</th>
-            <th scope="col">Unir Palabras (Cantidad de Movimientos)</th>
-            <th scope="col">Menotest (Cantidad de Movimientos)</th>
+            <th scope="col" (click)="sort('adivina')">
+              Adivina el número (Aciertos) <i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th scope="col" (click)="sort('agilidad')">
+              Agilidad mental(Aciertos) <i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th scope="col" (click)="sort('anagrama')">
+              Anagrama(Aciertos) <i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th scope="col" (click)="sort('ppt')">
+              Piedra, Papel o Tijera(Victorias) <i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th scope="col" (click)="sort('tateti')">
+              TaTeTi(Victorias) <i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th scope="col" (click)="sort('unirPalabras')">
+              Unir Palabras (Cantidad de Movimientos)
+              <i class="fa fa-fw fa-sort"></i>
+            </th>
+            <th scope="col" (click)="sort('memotest')">
+              Memotest (Cantidad de Movimientos)<i class="fa fa-fw fa-sort"></i>
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let user of usuarios">
-            <th scope="row">{{ user.data.nombre }}</th>
+            <th scope="row">
+              {{ user.data.nombre }}
+            </th>
             <td>{{ user.data.puntajes.adivina }}</td>
             <td>{{ user.data.puntajes.agilidad }}</td>
             <td>{{ user.data.puntajes.anagrama }}</td>

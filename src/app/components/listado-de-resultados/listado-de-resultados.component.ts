@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { DataService } from '../../services/data.service';
 @Component({
   selector: 'app-listado-de-resultados',
@@ -7,7 +8,9 @@ import { DataService } from '../../services/data.service';
 })
 export class ListadoDeResultadosComponent implements OnInit {
   usuarios: any[];
-
+  unsortedUsers: any[];
+  direction = true;
+  filter = new FormControl('');
   constructor(private dataServ: DataService) {}
 
   ngOnInit() {
@@ -30,5 +33,23 @@ export class ListadoDeResultadosComponent implements OnInit {
           });
         });
       });
+  }
+  compare = (v1: number, v2: number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
+  sort(column: string) {
+    this.usuarios = this.usuarios.sort((a, b) => {
+      const res = this.compare(
+        a.data.puntajes[column],
+        b.data.puntajes[column]
+      );
+      return this.direction ? res : -res;
+    });
+    this.direction = !this.direction;
+  }
+
+  search(text: string): any[] {
+    return this.usuarios.filter((user) => {
+      const term = text.toLowerCase();
+      return user.data.nombre.toLowerCase().includes(term);
+    });
   }
 }
